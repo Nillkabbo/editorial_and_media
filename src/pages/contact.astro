@@ -17,29 +17,56 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="narrow-content">
       <section class="content-section">
         <h2>Contact Methods</h2>
+        <p>
+          We're here to help. Whether you have questions about submissions, want to
+          discuss a partnership, need writing support, or just want to connect,
+          we'd love to hear from you. Choose the contact method that best fits your
+          inquiry:
+        </p>
         <div class="contact-methods">
           <div class="contact-method">
             <h3>General Inquiries</h3>
+            <p>
+              For questions about our platform, editorial policies, partnerships,
+              or anything else, reach out to:
+            </p>
             <p>
               <a href="mailto:contact@latecheditorialpublishing.com"
                 >contact@latecheditorialpublishing.com</a
               >
             </p>
+            <p class="contact-note">
+              We typically respond within 2-3 business days.
+            </p>
           </div>
           <div class="contact-method">
             <h3>Submissions</h3>
+            <p>
+              Ready to submit your work? Have questions about our submission process
+              or review timeline? Contact:
+            </p>
             <p>
               <a href="mailto:submissions@latecheditorialpublishing.com"
                 >submissions@latecheditorialpublishing.com</a
               >
             </p>
+            <p class="contact-note">
+              Include your abstract and manuscript details in your initial inquiry.
+            </p>
           </div>
           <div class="contact-method">
-            <h3>Support/Donations</h3>
+            <h3>Support & Donations</h3>
+            <p>
+              Interested in supporting our mission? Want to discuss donation options
+              or sponsorship opportunities? Reach out to:
+            </p>
             <p>
               <a href="mailto:donate@latecheditorialpublishing.com"
                 >donate@latecheditorialpublishing.com</a
               >
+            </p>
+            <p class="contact-note">
+              We're happy to discuss various ways to support our work.
             </p>
           </div>
         </div>
@@ -101,10 +128,39 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </section>
 
       <section class="content-section">
-        <h2>Response Time</h2>
+        <h2>Response Time & What to Expect</h2>
         <p>
           We aim to respond to all inquiries within 2-3 business days. For
-          urgent matters, please indicate this in your message subject line.
+          urgent matters, please indicate this in your message subject line with
+          "[URGENT]" prefix.
+        </p>
+        <p>
+          <strong>What happens after you contact us:</strong>
+        </p>
+        <ul>
+          <li>
+            <strong>Submissions:</strong> You'll receive an acknowledgment within
+            2-3 business days confirming receipt. Our review process typically
+            takes 4-8 weeks, depending on the type of submission and review required.
+          </li>
+          <li>
+            <strong>General inquiries:</strong> We'll respond with information,
+            answers to your questions, or next steps within 2-3 business days.
+          </li>
+          <li>
+            <strong>Partnership inquiries:</strong> We'll schedule a conversation
+            to discuss opportunities and determine if there's a good fit for
+            collaboration.
+          </li>
+          <li>
+            <strong>Support inquiries:</strong> We'll provide information about
+            ways to support our work and answer any questions about contributions
+            or partnerships.
+          </li>
+        </ul>
+        <p>
+          If you don't hear from us within a week, please feel free to follow up.
+          We want to make sure your inquiry doesn't get lost.
         </p>
       </section>
 
@@ -269,6 +325,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .contact-method a:hover {
     color: var(--color-accent-hover);
     text-decoration: underline;
+  }
+
+  .contact-note {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    font-style: italic;
+    margin-top: var(--spacing-sm);
   }
 
   .contact-form {

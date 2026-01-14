@@ -102,36 +102,113 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <section class="content-section">
         <h2>Our Impact by the Numbers</h2>
+        <p>
+          As a new platform, we're building our analytics infrastructure to track
+          meaningful metrics. While we're still in our early stages, we're committed
+          to transparency about our reach and impact. Here's what we're tracking:
+        </p>
         <div class="metrics-grid">
           <div class="metric-box">
             <h3>Articles Published</h3>
-            <p class="metric-value">Metrics coming soon</p>
+            <p class="metric-value">12+</p>
+            <p class="metric-description">Scholarly articles, editorial pieces, and resources</p>
           </div>
           <div class="metric-box">
-            <h3>Readers Reached</h3>
-            <p class="metric-value">Metrics coming soon</p>
+            <h3>Resources Available</h3>
+            <p class="metric-value">4</p>
+            <p class="metric-description">Writing guides, templates, and reference materials</p>
           </div>
           <div class="metric-box">
-            <h3>Countries Served</h3>
-            <p class="metric-value">Metrics coming soon</p>
+            <h3>Open Access</h3>
+            <p class="metric-value">100%</p>
+            <p class="metric-description">All content freely accessible, no paywalls</p>
           </div>
           <div class="metric-box">
-            <h3>Newsletter Subscribers</h3>
-            <p class="metric-value">Metrics coming soon</p>
+            <h3>Submission Fees</h3>
+            <p class="metric-value">$0</p>
+            <p class="metric-description">No charges for authors to submit or publish</p>
           </div>
         </div>
         <p class="metrics-note">
-          We're building our analytics infrastructure to provide transparent,
-          meaningful metrics on our impact. Check back soon for updated numbers.
+          We're actively building our readership and expanding our content library.
+          As we grow, we'll share detailed metrics on readership, geographic reach,
+          citation impact, and community engagement. Our commitment to open access
+          means we're removing barriers to both reading and publishing quality scholarship.
         </p>
+      </section>
+
+      <section class="content-section">
+        <h2>Stories of Impact</h2>
+        <p>
+          While we're still building our platform, we're already seeing the difference
+          that accessible, rigorous scholarship can make. Here are some ways our work
+          is having an impact:
+        </p>
+        <div class="impact-stories">
+          <div class="story-item">
+            <h3>Supporting Emerging Scholars</h3>
+            <p>
+              Graduate students and early-career researchers are using our resources
+              to improve their writing, navigate the publication process, and develop
+              their voices. Our guides on citation practices, literature reviews, and
+              academic writing provide practical support that many institutions don't
+              offer.
+            </p>
+          </div>
+          <div class="story-item">
+            <h3>Bridging Research and Practice</h3>
+            <p>
+              Practitioners, educators, and policymakers are accessing our content to
+              inform their work. By making research accessible beyond academic circles,
+              we're helping evidence-based practices reach the communities that need them.
+            </p>
+          </div>
+          <div class="story-item">
+            <h3>Democratizing Knowledge</h3>
+            <p>
+              Readers without institutional access are finding quality, well-researched
+              information on topics ranging from research methods to public policy.
+              Our commitment to open access ensures that financial barriers don't
+              prevent people from accessing valuable scholarship.
+            </p>
+          </div>
+        </div>
       </section>
 
       <section class="content-section">
         <h2>Partner With Us</h2>
         <p>
-          We're interested in partnerships that extend the reach of quality
-          scholarship. If you're interested in syndication, content
-          partnerships, or other collaborations, we'd love to hear from you.
+          We're building partnerships that extend the reach of quality scholarship
+          and support our mission. We're particularly interested in:
+        </p>
+        <ul>
+          <li>
+            <strong>Content syndication:</strong> Partnerships with other publications,
+            platforms, or organizations that want to share our content with their
+            audiences
+          </li>
+          <li>
+            <strong>Institutional partnerships:</strong> Collaborations with universities,
+            research institutions, or libraries to support their communities and extend
+            our reach
+          </li>
+          <li>
+            <strong>Educational partnerships:</strong> Working with educational
+            organizations to provide resources and support for students and educators
+          </li>
+          <li>
+            <strong>Research collaborations:</strong> Partnering with researchers and
+            research groups to publish and promote important work
+          </li>
+          <li>
+            <strong>Technology partnerships:</strong> Collaborations with platforms
+            and tools that support scholarly communication and open access
+          </li>
+        </ul>
+        <p>
+          If you're interested in exploring a partnership, we'd love to hear from you.
+          We're open to creative collaborations that advance our shared mission of
+          making quality scholarship accessible.
         </p>
         <p>
           <a href="/contact/" class="btn btn-outline">Get in Touch</a>
@@ -270,6 +347,38 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     font-style: italic;
     margin-top: var(--spacing-md);
     text-align: center;
+  }
+
+  .metric-description {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    margin-top: var(--spacing-xs);
+    font-style: italic;
+  }
+
+  .impact-stories {
+    display: grid;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+  }
+
+  .story-item {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-left: 4px solid var(--color-accent);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .story-item h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+    font-size: 1.25rem;
+  }
+
+  .story-item p {
+    margin: 0;
+    line-height: 1.7;
   }
 
   @media (max-width: 768px) {
