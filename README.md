@@ -205,3 +205,4 @@ All collections use Zod schemas for type safety and validation.
 - Contact form requires Formspree setup (see above)
 - Newsletter signup is placeholder (coming soon)
 - Donation processing is placeholder (coming soon)
+# GitHub Pages Custom Domain
