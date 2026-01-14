@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import PostCard from './PostCard.astro';
+
+interface Props {
+  currentSlug: string;
+  collection: 'scholarly' | 'editorial' | 'resources';
+  tags: string[];
+  limit?: number;
+}
+
+const { currentSlug, collection, tags, limit = 3 } = Astro.props;
+
+const allPosts = await getCollection(collection);
+const posts = allPosts
+  .filter((post) => !post.data.draft && post.slug !== currentSlug)
+  .map((post) => {
+    const sharedTags = post.data.tags.filter((tag) => tags.includes(tag));
+    return {
+      post,
+      score: sharedTags.length,
+      date: post.data.date,
+    };
+  })
+  .filter((item) => item.score > 0)
+  .sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return b.date.getTime() - a.date.getTime();
+  })
+  .slice(0, limit)
+  .map((item) => item.post);
+
+if (posts.length === 0) {
+  return null;
+}
+---
+
+<section class="related-posts">
+  <h2 class="related-posts-heading">Related Articles</h2>
+  <div class="related-posts-grid">
+    {posts.map((post) => {
+      const collectionPath = collection === 'scholarly' ? '/scholarly' : collection === 'editorial' ? '/editorial' : '/resources';
+      return (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          author={post.data.author || 'LaTech Editorial Team'}
+          tags={post.data.tags}
+          url={`${collectionPath}/${post.slug}/`}
+          readingTime={post.data.readingTime}
+          featured={post.data.featured}
+        />
+      );
+    })}
+  </div>
+</section>
+
+<style>
+  .related-posts {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+  }
+  
+  .related-posts-heading {
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.75rem;
+  }
+  
+  .related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+  }
+  
+  @media (max-width: 768px) {
+    .related-posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

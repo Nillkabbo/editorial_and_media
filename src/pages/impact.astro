@@ -1,0 +1,291 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Impact & Digital Reach | LaTech Editorial Publishing"
+  description="Learn how we advance public education through accessible scholarship, ethical digital reach, and knowledge democratization."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>Impact & Digital Reach</h1>
+      <p class="page-subtitle">
+        Advancing public education through accessible scholarship
+      </p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="narrow-content">
+      <section class="content-section">
+        <h2>Knowledge for the Public Good</h2>
+        <p>
+          We believe that rigorous scholarship should reach beyond academic
+          circles to inform public understanding and discourse. Our approach to
+          digital reach is guided by ethical principles and a commitment to
+          accessibility.
+        </p>
+        <p>Our strategies include:</p>
+        <ul>
+          <li>
+            <strong>Making research accessible beyond academia:</strong> We publish
+            work that bridges scholarly rigor and public understanding
+          </li>
+          <li>
+            <strong>SEO optimization:</strong> We ensure quality information can be
+            found by people searching for answers
+          </li>
+          <li>
+            <strong>Newsletter distribution:</strong> Direct engagement with readers
+            interested in evidence-based content
+          </li>
+          <li>
+            <strong>Social media presence:</strong> Sharing research and analysis
+            to foster broader conversations
+          </li>
+          <li>
+            <strong>Syndication partnerships:</strong> Future collaborations to extend
+            reach (coming soon)
+          </li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>Why Reach Matters</h2>
+        <p>
+          In an era of misinformation and information silos, making rigorous
+          research accessible serves multiple critical purposes:
+        </p>
+        <ul>
+          <li>
+            <strong>Democratizing knowledge:</strong> Quality information shouldn't
+            be limited to those who can afford subscriptions or have institutional
+            access
+          </li>
+          <li>
+            <strong>Countering misinformation:</strong> Accessible, well-researched
+            content provides alternatives to false or misleading information
+          </li>
+          <li>
+            <strong>Supporting evidence-based discourse:</strong> Public conversations
+            benefit when grounded in rigorous research rather than speculation
+          </li>
+          <li>
+            <strong>Building trust in expertise:</strong> When experts communicate
+            clearly and accessibly, they demonstrate the value of rigorous scholarship
+          </li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>How We Measure Impact</h2>
+        <p>We track multiple dimensions of impact:</p>
+        <ul>
+          <li>
+            <strong>Readership and engagement:</strong> How many people access and
+            engage with our content
+          </li>
+          <li>
+            <strong>Geographic reach:</strong> Where our readers are located, ensuring
+            global accessibility
+          </li>
+          <li>
+            <strong>Citation and reference:</strong> How other publications and researchers
+            use our work
+          </li>
+          <li>
+            <strong>Reader feedback and community growth:</strong> Qualitative indicators
+            of impact and value
+          </li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>Our Impact by the Numbers</h2>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <h3>Articles Published</h3>
+            <p class="metric-value">Metrics coming soon</p>
+          </div>
+          <div class="metric-box">
+            <h3>Readers Reached</h3>
+            <p class="metric-value">Metrics coming soon</p>
+          </div>
+          <div class="metric-box">
+            <h3>Countries Served</h3>
+            <p class="metric-value">Metrics coming soon</p>
+          </div>
+          <div class="metric-box">
+            <h3>Newsletter Subscribers</h3>
+            <p class="metric-value">Metrics coming soon</p>
+          </div>
+        </div>
+        <p class="metrics-note">
+          We're building our analytics infrastructure to provide transparent,
+          meaningful metrics on our impact. Check back soon for updated numbers.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>Partner With Us</h2>
+        <p>
+          We're interested in partnerships that extend the reach of quality
+          scholarship. If you're interested in syndication, content
+          partnerships, or other collaborations, we'd love to hear from you.
+        </p>
+        <p>
+          <a href="/contact/" class="btn btn-outline">Get in Touch</a>
+        </p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #1e3a8a 100%);
+    color: var(--color-white);
+    padding: var(--spacing-2xl) 0;
+    text-align: center;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .page-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at top right,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  .page-header h1 {
+    color: var(--color-white);
+    margin-bottom: var(--spacing-xs);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .page-content {
+    padding: var(--spacing-lg) 0 var(--spacing-2xl);
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .content-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .content-section h2 {
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+    color: var(--color-primary);
+  }
+
+  .content-section ul {
+    margin-top: var(--spacing-md);
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .content-section li {
+    margin-bottom: var(--spacing-md);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .content-section li::before {
+    content: "→";
+    color: var(--color-accent);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+  }
+
+  .metric-box {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition:
+      transform var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+
+  .metric-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent);
+  }
+
+  .metric-box h3 {
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  .metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary) 0%,
+      var(--color-accent) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  .metrics-note {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    font-style: italic;
+    margin-top: var(--spacing-md);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

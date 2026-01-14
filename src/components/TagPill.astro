@@ -1,0 +1,57 @@
+---
+interface Props {
+  tag: string;
+  href?: string;
+  size?: "small" | "medium";
+}
+
+const { tag, href, size = "small" } = Astro.props;
+const Tag = href ? "a" : "span";
+const tagProps = href ? { href } : {};
+---
+
+<Tag {...tagProps} class={`tag-pill tag-pill-${size}`}>
+  {tag}
+</Tag>
+
+<style>
+  .tag-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: var(--font-sans);
+    transition: all var(--transition-fast);
+  }
+
+  .tag-pill-small {
+    font-size: var(--font-size-xs);
+    padding: 0.2rem 0.6rem;
+  }
+
+  .tag-pill-medium {
+    font-size: var(--font-size-sm);
+    padding: 0.3rem 0.875rem;
+  }
+
+  .tag-pill:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  a.tag-pill:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+</style>

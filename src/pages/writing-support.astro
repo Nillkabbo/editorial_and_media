@@ -1,0 +1,265 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
+import { getCollection } from "astro:content";
+
+const resources = await getCollection("resources", ({ data }) => !data.draft);
+const sortedResources = resources.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+
+<BaseLayout
+  title="Writing Support | LaTech Editorial Publishing"
+  description="Get editorial guidance, writing resources, and submission support for scholarly and public-facing writing projects."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>Writing Support</h1>
+      <p class="page-subtitle">
+        Resources and guidance for researchers and writers
+      </p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="narrow-content">
+      <section class="content-section">
+        <h2>How We Support Writers</h2>
+        <p>
+          We take a capacity-building approach to writing support, helping
+          researchers and writers develop their skills while producing quality
+          work. Our support includes:
+        </p>
+        <ul>
+          <li>
+            <strong>Editorial feedback on manuscripts:</strong> Constructive, detailed
+            feedback to help strengthen your writing
+          </li>
+          <li>
+            <strong>Guidance on publication processes:</strong> Support navigating
+            peer review, submission, and publication
+          </li>
+          <li>
+            <strong>Resources for improving scholarly writing:</strong> Guides, templates,
+            and best practices
+          </li>
+          <li>
+            <strong
+              >Support for translating research to public audiences:</strong
+            > Help making complex ideas accessible
+          </li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>Submit Your Work</h2>
+        <p>We welcome submissions of:</p>
+        <ul>
+          <li>Original scholarly research</li>
+          <li>Thoughtful editorial commentary</li>
+          <li>Well-researched analysis</li>
+        </ul>
+        <p>
+          <strong>How to submit:</strong> Email your submission to <a
+            href="mailto:submissions@latecheditorialpublishing.com"
+            >submissions@latecheditorialpublishing.com</a
+          >
+        </p>
+        <p><strong>What to include:</strong></p>
+        <ul>
+          <li>Abstract or brief summary</li>
+          <li>Full manuscript</li>
+          <li>Brief author bio</li>
+        </ul>
+      </section>
+
+      {
+        sortedResources.length > 0 && (
+          <section class="content-section">
+            <h2>Writing Resources</h2>
+            <div class="resources-grid">
+              {sortedResources.map((resource) => (
+                <PostCard
+                  title={resource.data.title}
+                  description={resource.data.description}
+                  date={resource.data.date}
+                  author={resource.data.author || "LaTech Editorial Team"}
+                  tags={resource.data.tags}
+                  url={`/resources/${resource.slug}/`}
+                />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <section class="content-section">
+        <h2>Mentorship Program</h2>
+        <p>
+          We are developing a mentorship program to connect emerging scholars
+          with experienced researchers and writers. This program will provide
+          guidance, feedback, and professional development opportunities.
+        </p>
+        <p>
+          <strong>Stay tuned for announcements.</strong> If you're interested in participating
+          as a mentor or mentee, please <a href="/contact/">contact us</a>.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq">
+          <div class="faq-item">
+            <h3>Do you charge submission fees?</h3>
+            <p>
+              No, we do not charge submission fees. We believe financial
+              barriers should not prevent quality work from being considered.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3>How long is the review process?</h3>
+            <p>
+              The review process typically takes 4-8 weeks, depending on the
+              type of submission and the depth of review required.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3>Do you accept previously published work?</h3>
+            <p>
+              Generally, we prefer original, unpublished work. However, if you
+              have questions about a specific piece, please contact us to
+              discuss.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #1e3a8a 100%);
+    color: var(--color-white);
+    padding: var(--spacing-2xl) 0;
+    text-align: center;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .page-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at top right,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  .page-header h1 {
+    color: var(--color-white);
+    margin-bottom: var(--spacing-xs);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .page-content {
+    padding: var(--spacing-lg) 0 var(--spacing-2xl);
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .content-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .content-section h2 {
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+    color: var(--color-primary);
+  }
+
+  .content-section ul {
+    margin-top: var(--spacing-md);
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .content-section li {
+    margin-bottom: var(--spacing-md);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .content-section li::before {
+    content: "→";
+    color: var(--color-accent);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+  }
+
+  .faq {
+    margin-top: var(--spacing-lg);
+    display: grid;
+    gap: var(--spacing-md);
+  }
+
+  .faq-item {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    transition:
+      transform var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+
+  .faq-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent-light);
+  }
+
+  .faq-item h3 {
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,0 +1,359 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contact Us | LaTech Editorial Publishing"
+  description="Get in touch with LaTech Editorial Publishing for inquiries, submissions, partnerships, or support questions."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p class="page-subtitle">We'd love to hear from you</p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="narrow-content">
+      <section class="content-section">
+        <h2>Contact Methods</h2>
+        <div class="contact-methods">
+          <div class="contact-method">
+            <h3>General Inquiries</h3>
+            <p>
+              <a href="mailto:contact@latecheditorialpublishing.com"
+                >contact@latecheditorialpublishing.com</a
+              >
+            </p>
+          </div>
+          <div class="contact-method">
+            <h3>Submissions</h3>
+            <p>
+              <a href="mailto:submissions@latecheditorialpublishing.com"
+                >submissions@latecheditorialpublishing.com</a
+              >
+            </p>
+          </div>
+          <div class="contact-method">
+            <h3>Support/Donations</h3>
+            <p>
+              <a href="mailto:donate@latecheditorialpublishing.com"
+                >donate@latecheditorialpublishing.com</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Send Us a Message</h2>
+        <!-- Replace YOUR_FORM_ID with actual Formspree form ID -->
+        <form
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+          class="contact-form"
+        >
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject *</label>
+            <select id="subject" name="subject" required class="form-input">
+              <option value="">Select a subject</option>
+              <option value="General Inquiry">General Inquiry</option>
+              <option value="Submission Question">Submission Question</option>
+              <option value="Partnership">Partnership</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              class="form-input"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </section>
+
+      <section class="content-section">
+        <h2>Response Time</h2>
+        <p>
+          We aim to respond to all inquiries within 2-3 business days. For
+          urgent matters, please indicate this in your message subject line.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>Connect With Us</h2>
+        <div class="social-links">
+          <p>
+            <strong>Twitter/X:</strong>
+            <a
+              href="https://twitter.com/latecheditorial"
+              target="_blank"
+              rel="noopener noreferrer">@latecheditorial</a
+            > (placeholder)
+          </p>
+          <p>
+            <strong>LinkedIn:</strong>
+            <a
+              href="https://linkedin.com/company/latecheditorial"
+              target="_blank"
+              rel="noopener noreferrer">LaTech Editorial Publishing</a
+            > (placeholder)
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-white);
+    padding: var(--spacing-3xl) var(--spacing-lg);
+    text-align: center;
+    position: relative;
+    margin-bottom: var(--spacing-2xl);
+    overflow: hidden;
+  }
+
+  .page-header .container {
+    max-width: var(--max-layout-width);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at top right,
+      rgba(212, 106, 67, 0.2) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .page-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%
+    );
+  }
+
+  .page-header h1 {
+    color: var(--color-white);
+    margin-bottom: var(--spacing-lg);
+    font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.02em;
+  }
+
+  .page-subtitle {
+    font-size: clamp(var(--font-size-lg), 2vw, var(--font-size-xl));
+    opacity: 0.95;
+    margin: 0 auto;
+    font-weight: 400;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-serif);
+    line-height: 1.5;
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .page-content {
+    padding: var(--spacing-lg) 0 var(--spacing-2xl);
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .content-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .content-section h2 {
+    margin-bottom: var(--spacing-lg);
+    font-size: clamp(var(--font-size-2xl), 3vw, var(--font-size-3xl));
+    color: var(--color-primary);
+    font-family: var(--font-serif);
+    border-bottom: 2px solid var(--color-border-light);
+    padding-bottom: var(--spacing-sm);
+    display: block;
+  }
+
+  .contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+  }
+
+  .contact-method {
+    padding: var(--spacing-xl);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .contact-method:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background-color: var(--color-white);
+    border-color: var(--color-accent);
+  }
+
+  .contact-method h3 {
+    margin-bottom: var(--spacing-md);
+    font-size: clamp(var(--font-size-lg), 2vw, var(--font-size-xl));
+    color: var(--color-primary);
+    font-family: var(--font-serif);
+  }
+
+  .contact-method p {
+    margin: 0;
+  }
+
+  .contact-method a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    word-break: break-word;
+    transition: color var(--transition-fast);
+  }
+
+  .contact-method a:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+  }
+
+  .contact-form {
+    margin-top: var(--spacing-lg);
+    background: var(--color-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .form-group {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    transition: all var(--transition-base);
+    background: var(--color-bg);
+    box-sizing: border-box;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(19, 53, 47, 0.1);
+    background: var(--color-white);
+  }
+
+  textarea.form-input {
+    resize: vertical;
+    font-family: inherit;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .social-links p {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: var(--spacing-2xl) var(--spacing-md);
+    }
+
+    .page-header h1 {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .contact-methods {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    .contact-form {
+      padding: var(--spacing-lg);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

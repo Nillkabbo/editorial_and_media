@@ -1,0 +1,478 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
+import SupportCTA from "../components/SupportCTA.astro";
+import { getCollection } from "astro:content";
+
+const scholarlyPosts = await getCollection(
+  "scholarly",
+  ({ data }) => !data.draft,
+);
+const editorialPosts = await getCollection(
+  "editorial",
+  ({ data }) => !data.draft,
+);
+
+const featuredScholarly = scholarlyPosts
+  .filter((post) => post.data.featured)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 1);
+
+const featuredEditorial = editorialPosts
+  .filter((post) => post.data.featured)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 1);
+---
+
+<BaseLayout
+  title="LaTech Editorial Publishing | Rigorous Scholarship, Accessible Knowledge"
+  description="A mission-driven platform advancing scholarly research, editorial excellence, and public education through rigorous publishing and writing support."
+>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-headline">
+          Rigorous Scholarship. Accessible Knowledge.
+        </h1>
+        <p class="hero-subheadline">
+          LaTech Editorial Publishing is a mission-driven platform advancing
+          research, editorial excellence, and public education.
+        </p>
+        <div class="hero-ctas">
+          <a href="/scholarly/" class="btn btn-primary"
+            >Explore Scholarly Work</a
+          >
+          <a href="/editorial/" class="btn btn-outline">Read Editorial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-content">
+    <div class="container">
+      <h2 class="section-heading">Featured Content</h2>
+      <div class="featured-grid">
+        {
+          featuredScholarly.map((post) => (
+            <PostCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              author={post.data.author}
+              tags={post.data.tags}
+              url={`/scholarly/${post.slug}/`}
+              readingTime={post.data.readingTime}
+              featured={post.data.featured}
+            />
+          ))
+        }
+        {
+          featuredEditorial.map((post) => (
+            <PostCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              author={post.data.author}
+              tags={post.data.tags}
+              url={`/editorial/${post.slug}/`}
+              readingTime={post.data.readingTime}
+              featured={post.data.featured}
+            />
+          ))
+        }
+      </div>
+      <div class="view-all-links">
+        <a href="/scholarly/" class="link">View All Scholarly Articles →</a>
+        <a href="/editorial/" class="link">View All Editorial →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="what-we-do">
+    <div class="container">
+      <h2 class="section-heading">What We Do</h2>
+      <div class="what-we-do-grid">
+        <div class="what-we-do-item">
+          <h3>Scholarly Publishing</h3>
+          <p>
+            We publish rigorous, peer-reviewed scholarly articles that advance
+            knowledge across disciplines while maintaining the highest standards
+            of academic excellence.
+          </p>
+          <a href="/scholarly/" class="link">Learn more →</a>
+        </div>
+        <div class="what-we-do-item">
+          <h3>Editorial & Media</h3>
+          <p>
+            Thoughtful editorial content, analysis, and commentary that bridges
+            academic research and public understanding, making complex ideas
+            accessible.
+          </p>
+          <a href="/editorial/" class="link">Learn more →</a>
+        </div>
+        <div class="what-we-do-item">
+          <h3>Writing Support</h3>
+          <p>
+            Resources, guidance, and editorial support for researchers and
+            writers seeking to improve their scholarly and public-facing
+            writing.
+          </p>
+          <a href="/writing-support/" class="link">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="impact-teaser">
+    <div class="container">
+      <div class="impact-content">
+        <h2 class="section-heading">Advancing Public Education</h2>
+        <p>
+          We believe knowledge should be accessible to all. Through ethical
+          digital reach, SEO optimization, and strategic distribution, we ensure
+          rigorous scholarship reaches diverse audiences and informs public
+          discourse.
+        </p>
+        <a href="/impact/" class="btn btn-outline">Learn About Our Impact</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter-signup">
+    <div class="container">
+      <h2 class="section-heading">Stay Informed</h2>
+      <p class="newsletter-description">
+        Get updates on new publications, resources, and opportunities.
+      </p>
+      <form class="newsletter-form" aria-label="Newsletter signup">
+        <input
+          type="email"
+          placeholder="Your email address"
+          aria-label="Email address"
+          disabled
+          class="newsletter-input"
+        />
+        <button
+          type="submit"
+          disabled
+          class="btn btn-primary newsletter-button"
+        >
+          Subscribe
+        </button>
+      </form>
+      <p class="newsletter-note">Coming soon</p>
+    </div>
+  </section>
+
+  <section class="support-section">
+    <div class="container">
+      <SupportCTA variant="banner" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-white) 100%);
+    color: var(--color-text);
+    padding: var(--spacing-3xl) 0;
+    text-align: center;
+    border-bottom: 2px solid var(--color-border-light);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(212, 106, 67, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-headline {
+    color: var(--color-primary);
+    font-size: clamp(var(--font-size-4xl), 6vw, var(--font-size-6xl));
+    margin-bottom: var(--spacing-lg);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    font-family: var(--font-serif);
+    font-weight: 700;
+  }
+
+  .hero-subheadline {
+    font-size: clamp(var(--font-size-lg), 2vw, var(--font-size-xl));
+    margin-bottom: var(--spacing-2xl);
+    color: var(--color-text-light);
+    font-weight: 400;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--font-serif);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    font-size: clamp(var(--font-size-3xl), 4vw, var(--font-size-4xl));
+    position: relative;
+    display: inline-block;
+    color: var(--color-primary);
+    font-family: var(--font-serif);
+    width: 100%;
+  }
+
+  .section-heading::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    margin: var(--spacing-md) auto 0;
+    border-radius: 2px;
+  }
+
+  .featured-content {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--color-white);
+  }
+
+  .featured-content .container {
+    width: 100%;
+    max-width: var(--max-layout-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    width: 100%;
+    box-sizing: border-box;
+    align-items: start; /* Align cards to top */
+  }
+
+  .view-all-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+    flex-wrap: wrap;
+  }
+
+  .what-we-do {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .what-we-do-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+  }
+
+  .what-we-do-item {
+    padding: var(--spacing-xl);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .what-we-do-item:hover {
+    background: var(--color-white);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .what-we-do-item h3 {
+    margin-bottom: var(--spacing-md);
+    font-size: clamp(var(--font-size-xl), 2vw, var(--font-size-2xl));
+    color: var(--color-primary);
+    font-family: var(--font-serif);
+  }
+
+  .what-we-do-item p {
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text);
+    line-height: 1.7;
+    font-size: var(--font-size-base);
+  }
+
+  .impact-teaser {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .impact-teaser::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(212, 106, 67, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .impact-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .impact-content .section-heading {
+    color: var(--color-white);
+  }
+
+  .impact-content .section-heading::after {
+    background: var(--color-accent);
+  }
+
+  .impact-content p {
+    font-size: clamp(var(--font-size-lg), 2vw, var(--font-size-xl));
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.95;
+    color: var(--color-white);
+    font-family: var(--font-serif);
+    line-height: 1.7;
+  }
+
+  .impact-content .btn-outline {
+    border-color: var(--color-white);
+    color: var(--color-white);
+  }
+
+  .impact-content .btn-outline:hover {
+    background: var(--color-white);
+    color: var(--color-primary);
+  }
+
+  .newsletter-signup {
+    padding: var(--spacing-3xl) 0;
+    text-align: center;
+    background: var(--color-white);
+  }
+
+  .newsletter-description {
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-text-light);
+    font-size: var(--font-size-lg);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: var(--spacing-md);
+    max-width: 550px;
+    margin: 0 auto var(--spacing-md);
+    justify-content: center;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: 0.875rem 1.25rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+    min-width: 250px;
+    transition: all var(--transition-base);
+    background: var(--color-bg);
+    font-family: var(--font-sans);
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(19, 53, 47, 0.1);
+  }
+
+  .newsletter-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .newsletter-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .newsletter-note {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    font-style: italic;
+    margin-top: var(--spacing-sm);
+  }
+
+  .support-section {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .featured-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    .newsletter-form {
+      flex-direction: column;
+      max-width: 100%;
+    }
+
+    .newsletter-input {
+      width: 100%;
+      min-width: auto;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-ctas .btn {
+      width: 100%;
+    }
+
+    .what-we-do-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

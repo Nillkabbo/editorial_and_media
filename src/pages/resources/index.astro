@@ -1,0 +1,248 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import { getCollection } from "astro:content";
+
+const allResources = await getCollection(
+  "resources",
+  ({ data }) => !data.draft,
+);
+const resources = allResources.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+
+<BaseLayout
+  title="Writing Resources | LaTech Editorial Publishing"
+  description="Access free writing guides, templates, and resources to improve your scholarly and public-facing writing."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>Resources</h1>
+      <p class="page-subtitle">Guides, templates, and references for writers</p>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <div class="intro-text">
+        <p>
+          Access free resources to improve your scholarly and public-facing
+          writing. Our guides, templates, and checklists help researchers and
+          writers develop their skills and produce quality work.
+        </p>
+      </div>
+
+      <div class="resources-grid">
+        {
+          resources.map((resource) => (
+            <div class="resource-card-wrapper">
+              <PostCard
+                title={resource.data.title}
+                description={resource.data.description}
+                date={resource.data.date}
+                author={resource.data.author || "LaTech Editorial Team"}
+                tags={resource.data.tags}
+                url={`/resources/${resource.slug}/`}
+              />
+              <div class="resource-meta">
+                <span class="resource-type">{resource.data.type}</span>
+                {resource.data.difficulty && (
+                  <span
+                    class={`resource-difficulty difficulty-${resource.data.difficulty}`}
+                  >
+                    {resource.data.difficulty}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-white);
+    padding: var(--spacing-3xl) var(--spacing-lg);
+    text-align: center;
+    position: relative;
+    margin-bottom: var(--spacing-2xl);
+    overflow: hidden;
+  }
+
+  .page-header .container {
+    max-width: var(--max-layout-width);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at top right,
+      rgba(212, 106, 67, 0.2) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .page-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%
+    );
+  }
+
+  .page-header h1 {
+    color: var(--color-white);
+    margin-bottom: var(--spacing-lg);
+    font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.02em;
+  }
+
+  .page-subtitle {
+    font-size: clamp(var(--font-size-lg), 2vw, var(--font-size-xl));
+    opacity: 0.95;
+    margin: 0 auto;
+    font-weight: 400;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-serif);
+    line-height: 1.5;
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .page-content {
+    padding: var(--spacing-lg) 0 var(--spacing-2xl);
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .intro-text {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-xl);
+    text-align: center;
+    font-size: 1.125rem;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .resource-card-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .resource-meta {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 var(--spacing-xs);
+  }
+
+  .resource-type {
+    display: inline-flex;
+    padding: 0.25rem 0.75rem;
+    background: rgba(
+      var(--color-primary-hue),
+      var(--color-primary-sat),
+      var(--color-primary-lightness),
+      0.1
+    );
+    color: var(--color-primary);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid
+      rgba(
+        var(--color-primary-hue),
+        var(--color-primary-sat),
+        var(--color-primary-lightness),
+        0.1
+      );
+  }
+
+  .resource-difficulty {
+    display: inline-flex;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  .difficulty-beginner {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .difficulty-intermediate {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: #d97706;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+  }
+
+  .difficulty-advanced {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: var(--spacing-2xl) var(--spacing-md);
+    }
+
+    .page-header h1 {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
