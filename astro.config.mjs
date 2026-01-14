@@ -3,6 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://www.latecheditorialpublishing.com',
+  base: '/editorial_and_media/',
   output: 'static',
   trailingSlash: 'always',
   integrations: [sitemap()],
