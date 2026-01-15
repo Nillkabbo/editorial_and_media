@@ -5,8 +5,8 @@ const baseUrl = import.meta.env.BASE_URL;
 // Helper function to create URLs with base path
 const createUrl = (path: string) => {
   // Remove trailing slash from baseUrl if present, then add path
-  const base = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
-  const cleanPath = path.startsWith('/') ? path : '/' + path;
+  const base = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
+  const cleanPath = path.startsWith("/") ? path : "/" + path;
   return base + cleanPath;
 };
 
@@ -27,20 +27,18 @@ const homeUrl = createUrl("/");
 <header class="header">
   <div class="header-container">
     <a href={homeUrl} class="header-logo">
-      <span>LaTech Editorial Publishing</span>
+      <span>La Tech Editorial Publishing</span>
     </a>
 
     <nav class="header-nav" aria-label="Main navigation">
       <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-      <label
-        for="nav-toggle"
-        class="nav-backdrop"
-        aria-label="Close navigation"
+      <label for="nav-toggle" class="nav-backdrop" aria-label="Close navigation"
       ></label>
       <ul class="nav-list">
         {
           navItems.map((item) => {
-            const isActive = currentPath === item.href || 
+            const isActive =
+              currentPath === item.href ||
               (item.href !== homeUrl && currentPath.startsWith(item.href));
             return (
               <li>
@@ -189,7 +187,7 @@ const homeUrl = createUrl("/");
   }
 
   .nav-link::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: var(--spacing-sm);
@@ -369,7 +367,6 @@ const homeUrl = createUrl("/");
       display: block;
     }
 
-
     .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
       transform: rotate(45deg) translate(8px, 8px);
     }
@@ -381,7 +378,6 @@ const homeUrl = createUrl("/");
     .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
       transform: rotate(-45deg) translate(8px, -8px);
     }
-
 
     .nav-list li {
       border-bottom: 1px solid var(--color-border-light);
